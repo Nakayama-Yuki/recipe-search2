@@ -4,15 +4,16 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 interface RecipePageProps {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
 /**
  * レシピ詳細ページ
  */
-export default async function RecipePage({ params }: RecipePageProps) {
+export default async function RecipePage(props: RecipePageProps) {
+  const params = await props.params;
   try {
     // レシピIDを数値に変換
     const recipeId = parseInt(params.id);

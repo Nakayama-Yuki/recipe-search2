@@ -6,20 +6,21 @@ import { SearchResults } from "@/components/SearchResults";
 import { SearchFormWrapper } from "@/components/SearchFormWrapper";
 
 interface SearchPageProps {
-  searchParams: {
+  searchParams: Promise<{
     query?: string;
     cuisine?: string;
     diet?: string;
     intolerances?: string;
     type?: string;
     number?: string;
-  };
+  }>;
 }
 
 /**
  * レシピ検索ページ
  */
-export default async function Home({ searchParams }: SearchPageProps) {
+export default async function Home(props: SearchPageProps) {
+  const searchParams = await props.searchParams;
   // フィルターオプションを取得
   const filterOptions = getFilterOptions();
 
