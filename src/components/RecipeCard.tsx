@@ -3,26 +3,50 @@
 import { Recipe } from "@/types/recipe";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 
 interface RecipeCardProps {
   recipe: Recipe;
+  onImageLoadError?: (recipeId: number) => void;
 }
 
 /**
  * レシピカードコンポーネント
+ * 画像の読み込みに失敗した場合は親コンポーネントに通知します
  */
-export function RecipeCard({ recipe }: RecipeCardProps) {
+export function RecipeCard({ recipe, onImageLoadError }: RecipeCardProps) {
+  const [imageError, setImageError] = useState(false);
+
+  /**
+   * 画像読み込みエラーのハンドラー
+   */
+  function handleImageError() {
+    setImageError(true);
+    // 親コンポーネントにエラーを通知
+    if (onImageLoadError) {
+      onImageLoadError(recipe.id);
+    }
+  }
+
   return (
     <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow">
       <div className="relative w-full aspect-[4/3]">
-        <Image
-          src={recipe.image}
-          alt={recipe.title}
-          fill
-          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          className="object-cover"
-          priority={false}
-        />
+        {!imageError ? (
+          <Image
+            src={recipe.image}
+            alt={recipe.title}
+            fill
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            className="object-cover"
+            priority={false}
+            onError={handleImageError}
+          />
+        ) : (
+          // 画像エラー時の代替表示
+          <div className="w-full h-full bg-gray-200 flex items-center justify-center text-gray-500">
+            <span className="text-sm">画像がありません</span>
+          </div>
+        )}
       </div>
 
       <div className="p-4">
