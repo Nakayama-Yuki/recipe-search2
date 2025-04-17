@@ -28,6 +28,11 @@ export async function searchRecipes(
   // 検索クエリパラメータの構築
   const queryParams = new URLSearchParams({
     apiKey,
+    // 詳細情報（調理時間など）を含めるパラメータを追加
+    addRecipeInformation: "true",
+    // 栄養情報も必要な場合はコメントを外す
+    // addRecipeNutrition: "true",
+    fillIngredients: "false", // 材料のリストは不要
     ...Object.entries(params).reduce((acc, [key, value]) => {
       if (value !== undefined) {
         acc[key] = value.toString();

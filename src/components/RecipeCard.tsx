@@ -53,10 +53,16 @@ export function RecipeCard({ recipe, onImageLoadError }: RecipeCardProps) {
         <h3 className="font-bold text-lg mb-2 line-clamp-2">{recipe.title}</h3>
 
         <div className="flex flex-wrap gap-2 mb-3">
-          {/* 調理時間タグ */}
-          <span className="inline-flex items-center px-2 py-1 rounded-md text-xs font-medium bg-blue-100 text-blue-800">
-            {recipe.readyInMinutes}分
-          </span>
+          {/* 調理時間タグ - 数値が存在する場合のみ表示 */}
+          {typeof recipe.readyInMinutes === "number" ? (
+            <span className="inline-flex items-center px-2 py-1 rounded-md text-xs font-medium bg-blue-100 text-blue-800">
+              ⏱️ {recipe.readyInMinutes}分
+            </span>
+          ) : (
+            <span className="inline-flex items-center px-2 py-1 rounded-md text-xs font-medium bg-blue-100 text-blue-800">
+              ⏱️ 時間不明
+            </span>
+          )}
 
           {/* 食事タイプのタグ */}
           {recipe.dishTypes && recipe.dishTypes.length > 0 && (
