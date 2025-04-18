@@ -25,7 +25,25 @@ export interface Recipe {
   healthScore: number;
   spoonacularScore: number;
   pricePerServing: number;
-  analyzedInstructions: any[];
+  analyzedInstructions: {
+    name: string;
+    steps: {
+      number: number;
+      step: string;
+      ingredients?: {
+        id: number;
+        name: string;
+        localizedName: string;
+        image: string;
+      }[];
+      equipment?: {
+        id: number;
+        name: string;
+        localizedName: string;
+        image: string;
+      }[];
+    }[];
+  }[];
   cheap: boolean;
   creditsText: string;
   cuisines: string[];
