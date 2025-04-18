@@ -13,6 +13,7 @@ interface RecipeCardProps {
 /**
  * レシピカードコンポーネント
  * 画像の読み込みに失敗した場合は親コンポーネントに通知します
+ * カードの高さを均一にし、「詳細を見る」ボタンを下部に固定します
  */
 export function RecipeCard({ recipe, onImageLoadError }: RecipeCardProps) {
   const [imageError, setImageError] = useState(false);
@@ -29,7 +30,7 @@ export function RecipeCard({ recipe, onImageLoadError }: RecipeCardProps) {
   }
 
   return (
-    <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow">
+    <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow h-full flex flex-col">
       <div className="relative w-full aspect-[4/3]">
         {!imageError ? (
           <Image
@@ -49,7 +50,7 @@ export function RecipeCard({ recipe, onImageLoadError }: RecipeCardProps) {
         )}
       </div>
 
-      <div className="p-4">
+      <div className="p-4 flex flex-col flex-grow">
         <h3 className="font-bold text-lg mb-2 line-clamp-2">{recipe.title}</h3>
 
         <div className="flex flex-wrap gap-2 mb-3">
@@ -89,11 +90,13 @@ export function RecipeCard({ recipe, onImageLoadError }: RecipeCardProps) {
           )}
         </div>
 
-        <Link
-          href={`/recipe/${recipe.id}`}
-          className="block w-full text-center bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition-colors">
-          詳細を見る
-        </Link>
+        <div className="mt-auto pt-3">
+          <Link
+            href={`/recipe/${recipe.id}`}
+            className="block w-full text-center bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition-colors">
+            詳細を見る
+          </Link>
+        </div>
       </div>
     </div>
   );
