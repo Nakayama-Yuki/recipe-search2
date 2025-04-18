@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import Link from "next/link";
 import "./globals.css";
 
 // Interフォントの設定
@@ -27,11 +28,11 @@ export default function RootLayout({
           <div className="container mx-auto px-4 py-4">
             <div className="flex justify-between items-center">
               <h1 className="text-xl font-bold text-blue-600">レシピ検索</h1>
-              <a
+              <Link
                 href="/"
                 className="text-gray-600 hover:text-blue-600 transition-colors">
                 ホーム
-              </a>
+              </Link>
             </div>
           </div>
         </header>
