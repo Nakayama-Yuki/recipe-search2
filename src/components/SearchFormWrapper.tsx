@@ -2,7 +2,6 @@
 
 import { FilterOptions, RecipeSearchParams } from "@/types/recipe";
 import { SearchForm } from "./SearchForm";
-import { useRouter } from "next/navigation";
 
 interface SearchFormWrapperProps {
   filterOptions: FilterOptions;
@@ -11,39 +10,35 @@ interface SearchFormWrapperProps {
 
 /**
  * 検索フォームのラッパーコンポーネント
- * サーバーコンポーネントからクライアントコンポーネントへの橋渡し役
+ * initialParamsの変更時にコンポーネントを再マウントするために使用
  */
 export function SearchFormWrapper({
   filterOptions,
   initialParams,
 }: SearchFormWrapperProps) {
-  const router = useRouter();
-
   /**
-   * 検索処理を実行する
+   * 検索実行時のハンドラー
+   * @param params 検索パラメーター
    */
   function handleSearch(params: RecipeSearchParams) {
-    // URLに検索パラメータを反映
-    const url = new URL(window.location.href);
+    // URLパラメータに検索条件を追加してページをリロード
+    const searchParams = new URLSearchParams();
 
-    // 既存のクエリパラメータをクリア
-    url.searchParams.forEach((_, key) => {
-      url.searchParams.delete(key);
-    });
-
-    // 新しいパラメータをセット
+    // 空でない値のみをURLパラメータに追加
     Object.entries(params).forEach(([key, value]) => {
       if (value) {
-        url.searchParams.set(key, String(value));
+        searchParams.set(key, String(value));
       }
     });
 
-    // クライアントサイドのナビゲーション実行
-    router.push(url.toString());
+    // URLを更新して画面をリロード
+    window.location.search = searchParams.toString();
   }
 
+  // keyプロパティを使ってinitialParamsが変更されたときにコンポーネントを再マウント
   return (
     <SearchForm
+      key={JSON.stringify(initialParams)}
       filterOptions={filterOptions}
       initialParams={initialParams}
       onSearch={handleSearch}

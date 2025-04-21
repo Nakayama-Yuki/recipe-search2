@@ -1,7 +1,7 @@
 "use client";
 
 import { FilterOptions, RecipeSearchParams } from "@/types/recipe";
-import { useState, FormEvent, useEffect } from "react";
+import { useState, FormEvent } from "react";
 
 interface SearchFormProps {
   filterOptions: FilterOptions;
@@ -11,24 +11,20 @@ interface SearchFormProps {
 
 /**
  * レシピ検索フォームコンポーネント
+ * 検索条件の入力と送信を処理する
  */
 export function SearchForm({
   filterOptions,
   initialParams,
   onSearch,
 }: SearchFormProps) {
-  const [searchParams, setSearchParams] = useState<RecipeSearchParams>({
-    query: "",
-    number: 12,
-  });
-
-  // 初期パラメータが変更されたときにstateを更新
-  useEffect(() => {
-    setSearchParams(initialParams);
-  }, [initialParams]);
+  // 初期値として直接initialParamsを使用（useEffectは不要）
+  const [searchParams, setSearchParams] =
+    useState<RecipeSearchParams>(initialParams);
 
   /**
    * 入力値の変更を処理する
+   * @param e 入力イベント
    */
   function handleChange(
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -39,6 +35,7 @@ export function SearchForm({
 
   /**
    * フォーム送信を処理する
+   * @param e フォーム送信イベント
    */
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
