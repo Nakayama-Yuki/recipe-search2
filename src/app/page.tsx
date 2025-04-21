@@ -20,6 +20,7 @@ interface SearchPageProps {
  * レシピ検索ページ
  */
 export default async function Home(props: SearchPageProps) {
+  // 検索パラメータを取得
   const searchParams = await props.searchParams;
   // フィルターオプションを取得
   const filterOptions = getFilterOptions();
