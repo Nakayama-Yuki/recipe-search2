@@ -1,5 +1,5 @@
 # このワークフローは、Node.jsの依存関係をクリーンインストールし、
-# キャッシュを利用してビルドとテストを複数のNode.jsバージョンで実行します
+# キャッシュを利用してビルドとテストをNode.js LTSで実行します
 # 詳細: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
 
 # ワークフローの名前（GitHub上で表示される）

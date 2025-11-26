@@ -2,14 +2,14 @@
 
 ## アーキテクチャ概要
 
-これは **Next.js 15 + React 19** で構築されたレシピ検索 Web アプリケーションです。Spoonacular API を使用してレシピデータを取得し、フィルタリング機能付きの検索インターフェースを提供します。
+これは **Next.js 16 + React 19** で構築されたレシピ検索 Web アプリケーションです。Spoonacular API を使用してレシピデータを取得し、フィルタリング機能付きの検索インターフェースを提供します。
 
 ### 主要技術スタック
 
-- **フロントエンド**: Next.js 15 (App Router), React 19, TailwindCSS v4, TypeScript 5
+- **フロントエンド**: Next.js 16 (App Router), React 19, TailwindCSS v4, TypeScript 5
 - **外部 API**: Spoonacular API (レシピデータソース)
 - **パッケージマネージャー**: pnpm (必須)
-- **開発サーバー**: Turbopack (`pnpm dev --turbopack`)
+- **開発サーバー**: `pnpm dev`
 
 ## 重要なパターンと規約
 
@@ -66,10 +66,10 @@ export function RecipeCard({ recipe, onImageLoadError }: RecipeCardProps) {
 ### 必須コマンド
 
 ```bash
-# Turbopack で高速開発サーバー起動
+# 開発サーバー起動
 pnpm dev
 
-# 本番ビルド（Turbopack使用）
+# 本番ビルド
 pnpm build
 
 # 型チェックとリンティング
