@@ -11,9 +11,9 @@ Next.js と Spoonacular API を使用したモダンなレシピ検索アプリ�
 
 ## 技術スタック 🛠️
 
-- **フレームワーク**: Next.js 15.5.0 (React 19)
+- **フレームワーク**: Next.js 16 (React 19)
 - **言語**: TypeScript
-- **スタイリング**: Tailwind CSS 4.1.12
+- **スタイリング**: Tailwind CSS 4
 - **外部 API**: Spoonacular API
 - **パッケージマネージャー**: pnpm
 - **リンター**: ESLint
@@ -22,7 +22,7 @@ Next.js と Spoonacular API を使用したモダンなレシピ検索アプリ�
 
 ### 必要な環境
 
-- Node.js 18 以上
+- Node.js 24 (LTS)
 - pnpm
 
 ### インストール
