@@ -53,7 +53,7 @@ export default async function RecipePage(props: RecipePageProps) {
               className="object-cover"
               sizes="100vw"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
+            <div className="absolute inset-0 bg-linear-to-t from-black/70 to-transparent flex items-end">
               <div className="p-6">
                 <h1 className="text-2xl md:text-3xl font-bold text-white mb-2">
                   {recipe.title}
