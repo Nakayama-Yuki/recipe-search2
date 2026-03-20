@@ -24,22 +24,11 @@ export async function SearchResults({ searchParams }: SearchResultsProps) {
     );
   }
 
+  let data;
+
   try {
     // APIからレシピデータを取得
-    const data = await searchRecipes(searchParams);
-
-    return (
-      <div>
-        <div className="flex justify-between items-center mb-6">
-          <h2 className="text-xl font-semibold">
-            検索結果: <span className="text-blue-600">{data.totalResults}</span>{" "}
-            件
-          </h2>
-        </div>
-
-        <RecipeGrid recipes={data.results} />
-      </div>
-    );
+    data = await searchRecipes(searchParams);
   } catch (error) {
     console.error("Failed to fetch recipes:", error);
     return (
@@ -49,4 +38,17 @@ export async function SearchResults({ searchParams }: SearchResultsProps) {
       </div>
     );
   }
+
+  return (
+    <div>
+      <div className="flex justify-between items-center mb-6">
+        <h2 className="text-xl font-semibold">
+          検索結果: <span className="text-blue-600">{data.totalResults}</span>{" "}
+          件
+        </h2>
+      </div>
+
+      <RecipeGrid recipes={data.results} />
+    </div>
+  );
 }

@@ -15,29 +15,29 @@ interface RecipeGridProps {
  */
 export function RecipeGrid({ recipes, isLoading = false }: RecipeGridProps) {
   // 画像がないレシピを非表示にするかどうかの状態を管理
-  const [hideRecipesWithoutImage, setHideRecipesWithoutImage] = useState(true);
+  const [hideRecipesWithoutImage, setHideRecipesWithoutImage] = useState(() => {
+    if (typeof window === "undefined") {
+      return true;
+    }
+
+    try {
+      const savedValue = window.localStorage.getItem("hideRecipesWithoutImage");
+      return savedValue !== null ? JSON.parse(savedValue) : true;
+    } catch (e) {
+      console.error("Failed to load preferences from localStorage:", e);
+      return true;
+    }
+  });
 
   // 画像の読み込みに失敗したレシピのIDを管理
   const [failedImageRecipeIds, setFailedImageRecipeIds] = useState<Set<number>>(
     new Set()
   );
 
-  // コンポーネントがマウントされたときに localStorage から設定を取得
-  useEffect(() => {
-    try {
-      const savedValue = localStorage.getItem("hideRecipesWithoutImage");
-      if (savedValue !== null) {
-        setHideRecipesWithoutImage(JSON.parse(savedValue));
-      }
-    } catch (e) {
-      console.error("Failed to load preferences from localStorage:", e);
-    }
-  }, []);
-
   // 設定変更時に localStorage に保存
   useEffect(() => {
     try {
-      localStorage.setItem(
+      window.localStorage.setItem(
         "hideRecipesWithoutImage",
         JSON.stringify(hideRecipesWithoutImage)
       );
