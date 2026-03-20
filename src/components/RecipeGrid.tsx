@@ -146,7 +146,7 @@ function RecipeGridSkeleton() {
         <div
           key={index}
           className="bg-white rounded-lg overflow-hidden shadow-md">
-          <div className="w-full aspect-[4/3] bg-gray-200 animate-pulse" />
+          <div className="w-full aspect-4/3 bg-gray-200 animate-pulse" />
           <div className="p-4">
             <div className="h-6 bg-gray-200 rounded animate-pulse mb-2" />
             <div className="flex gap-2 mb-4">
