@@ -45,6 +45,10 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      # ステップ4.5: ESLintを実行
+      - name: Run lint
+        run: pnpm lint --max-warnings=0
+
       # ステップ5: Next.jsビルドキャッシュを復元
       - name: Cache Next.js build
         uses: actions/cache@v4
