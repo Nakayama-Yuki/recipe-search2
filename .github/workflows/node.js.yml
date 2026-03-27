@@ -45,11 +45,11 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      # ステップ4.5: ESLintを実行
+      # ステップ5: ESLintを実行
       - name: Run lint
         run: pnpm lint --max-warnings=0
 
-      # ステップ5: Next.jsビルドキャッシュを復元
+      # ステップ6: Next.jsビルドキャッシュを復元
       - name: Cache Next.js build
         uses: actions/cache@v4
         with:
@@ -63,7 +63,7 @@ jobs:
             ${{ runner.os }}-nextjs-${{ hashFiles('**/pnpm-lock.yaml') }}-
             ${{ runner.os }}-nextjs-
 
-      # ステップ6: プロジェクトをビルド
+      # ステップ7: プロジェクトをビルド
       - name: Build project
         run: pnpm run build
 
