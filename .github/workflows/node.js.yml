@@ -51,7 +51,7 @@ jobs:
 
       # ステップ6: Next.jsビルドキャッシュを復元
       - name: Cache Next.js build
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: |
             ~/.pnpm-store
