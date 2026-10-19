@@ -13,6 +13,18 @@ export const metadata: Metadata = {
     "料理のジャンルやアレルギー情報、調理時間でフィルタリングしながら、お気に入りのレシピを見つけることができます。",
 };
 
+async function CopyrightNotice() {
+  "use cache";
+
+  const year = new Date().getFullYear();
+
+  return (
+    <p className="text-center text-gray-500 text-sm">
+      &copy; {year} レシピ検索アプリ | Powered by Spoonacular API
+    </p>
+  );
+}
+
 /**
  * アプリケーションのルートレイアウト
  */
@@ -41,10 +53,7 @@ export default function RootLayout({
 
         <footer className="bg-white mt-12 border-t border-gray-200">
           <div className="container mx-auto px-4 py-6">
-            <p className="text-center text-gray-500 text-sm">
-              &copy; {new Date().getFullYear()} レシピ検索アプリ | Powered by
-              Spoonacular API
-            </p>
+            <CopyrightNotice />
           </div>
         </footer>
       </body>

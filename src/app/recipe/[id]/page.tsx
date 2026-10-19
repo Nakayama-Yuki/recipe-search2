@@ -2,6 +2,7 @@ import { getRecipeById } from "@/services/recipeService";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { Suspense } from "react";
 
 interface RecipePageProps {
   params: Promise<{
@@ -12,10 +13,23 @@ interface RecipePageProps {
 /**
  * レシピ詳細ページ
  */
-export default async function RecipePage(props: RecipePageProps) {
-  const params = await props.params;
+export default function RecipePage(props: RecipePageProps) {
+  return (
+    <Suspense
+      fallback={
+        <main className="container mx-auto px-4 py-8">
+          <p className="text-center text-gray-500">レシピを読み込み中...</p>
+        </main>
+      }>
+      <RecipeDetails params={props.params} />
+    </Suspense>
+  );
+}
+
+async function RecipeDetails({ params }: RecipePageProps) {
+  const { id } = await params;
   // レシピIDを数値に変換
-  const recipeId = parseInt(params.id);
+  const recipeId = parseInt(id);
   let recipe;
 
   try {
