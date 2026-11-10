@@ -97,7 +97,7 @@ src/
 
 ### レート制限
 
-無料プランでは 1 日 150 リクエストまでの制限があります。実際の運用では有料プランの使用を推奨します。
+利用上限は契約プランやエンドポイントに依存します。利用中の Spoonacular ダッシュボードで残量・制限を確認してください。
 
 ## スクリプト 📜
 
@@ -115,6 +115,10 @@ pnpm start
 pnpm lint
 ```
 
+## 検証
+
+`pnpm lint` と `pnpm build` を実行します。ビルド・検索確認には `SPOONACULAR_API_KEY` を設定してください。現在、自動テストのスクリプトはありません。キーワード・フィルター変更、レシピ詳細、画像エラー時の表示は開発サーバーで確認します。
+
 ## 貢献 🤝
 
 1. このリポジトリをフォーク
@@ -122,3 +126,7 @@ pnpm lint
 3. 変更をコミット (`git commit -m 'Add some amazing feature'`)
 4. ブランチにプッシュ (`git push origin feature/amazing-feature`)
 5. プルリクエストを作成
+
+## 開発ルール
+
+開発時の指示は [AGENTS.md](AGENTS.md) を参照してください。依存バージョンと実行可能なスクリプトは [package.json](package.json) を正とします。
