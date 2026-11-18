@@ -117,7 +117,7 @@ pnpm lint
 
 ## 検証
 
-`pnpm lint` と `pnpm build` を実行します。ビルド・検索確認には `SPOONACULAR_API_KEY` を設定してください。通常E2Eは固定API応答を使い、検索・詳細遷移・APIエラー表示を検証します。キーワード・フィルター変更、レシピ詳細、画像エラー時の表示は開発サーバーで確認します。
+`pnpm ci:check` と `pnpm build` を実行します。検索確認には `SPOONACULAR_API_KEY` を設定してください。キーワード・フィルター変更、レシピ詳細、APIエラー・画像エラー時の表示は開発サーバーで確認します。実APIの疎通は手動の `Live API smoke test` で確認できます。
 
 ## 貢献 🤝
 
@@ -141,15 +141,12 @@ pnpm typecheck
 
 ## CIの実行手順
 
-`packageManager` に合わせてpnpm 12.21.0を使用します。CIは型・lint、ビルド、必要なブラウザの準備、本番E2Eの順で実行し、同じブランチの古い実行をキャンセルします。
+`packageManager` に合わせてpnpm 12.21.0を使用します。CIは型・lint、本番ビルドの順で実行し、同じブランチの古い実行をキャンセルします。
 
 ```bash
 pnpm install --frozen-lockfile
 pnpm ci:check
-pnpm build:e2e
-pnpm test:e2e
+pnpm build
 ```
 
-ブラウザ未導入の場合は `pnpm exec playwright install --with-deps chromium` を実行してください。ワークフローは [.github/workflows/](.github/workflows/) のYAMLを直接編集します。
-
-通常E2Eのサーバーは `tests/mock-fetch.mjs` でAPI応答を固定します。通常の開発・本番起動は実APIを使います。
+ワークフローは [.github/workflows/](.github/workflows/) のYAMLを直接編集します。
