@@ -36,7 +36,7 @@ pnpm lint
 pnpm build
 ```
 
-`pnpm build:e2e` → `pnpm test:e2e` で、固定したAPI応答による検索・詳細遷移・エラー表示を検証する。実APIの疎通は手動の `Live API smoke test` で別途確認する。
+`pnpm ci:check` で型チェックとlintを実行する。検索・詳細遷移・エラー表示は開発サーバーで確認する。実APIの疎通は手動の `Live API smoke test` で別途確認する。
 
 ## 文書の管理
 

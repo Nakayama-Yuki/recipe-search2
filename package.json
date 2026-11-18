@@ -8,9 +8,7 @@
     "typecheck": "next typegen && tsc --noEmit",
     "start": "next start",
     "lint": "eslint .",
-    "test:e2e": "playwright test",
-    "ci:check": "pnpm typecheck && pnpm lint --max-warnings=0",
-    "build:e2e": "node --import ./tests/mock-fetch.mjs node_modules/next/dist/bin/next build"
+    "ci:check": "pnpm typecheck && pnpm lint --max-warnings=0"
   },
   "dependencies": {
     "next": "16.4.5",
@@ -19,7 +17,6 @@
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "16.4.5",
-    "@playwright/test": "^1.65.1",
     "@tailwindcss/turbopack": "^4.3.5",
     "@types/node": "^24.19.2",
     "@types/react": "^19.3.0",
