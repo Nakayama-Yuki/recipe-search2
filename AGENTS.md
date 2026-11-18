@@ -36,7 +36,7 @@ pnpm lint
 pnpm build
 ```
 
-現在、自動テストのスクリプトはない。UI 変更時は `pnpm dev` で検索・フィルター・詳細遷移・画像エラー表示を確認する。実行できなかった確認は理由を報告する。
+`pnpm build:e2e` → `pnpm test:e2e` で、固定したAPI応答による検索・詳細遷移・エラー表示を検証する。実APIの疎通は手動の `Live API smoke test` で別途確認する。
 
 ## 文書の管理
 
